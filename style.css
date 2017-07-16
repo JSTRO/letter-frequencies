@@ -1,0 +1,14 @@
+body {
+  font-size: 20px;
+  font-family: "Courier New";
+}
+
+h1 {
+  text-align: center;
+}
+
+textarea {
+  font-size: inherit;
+  font-family: inherit;
+  width: 100%;
+}
