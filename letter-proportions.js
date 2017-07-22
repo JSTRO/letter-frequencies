@@ -6,13 +6,15 @@ function displayLetterFrequencies() {
   var letters = document.getElementById("letters");
   var totalChars = 0;
   var percent = 0;
-  var bar = "";
+  //var bar = "";
+  var data = [];
+  //var barChart;
 
   function totalCharCount(input) {
     for (i=0; i<inputValue.length; i++) {
       totalChars++;
     }
-    text.innerHTML = "Total Character Count: " + totalChars;
+    text.innerHTML = "Total Character Count: " + totalChars + " | Unique Letters: ";
   }
 
   totalCharCount(inputValue);
@@ -32,30 +34,70 @@ function displayLetterFrequencies() {
     return letterFrequencies;
   }
 
-  var letterObj = createLetterFrequencies();
-  var arr = [];
+  var letterNumberObj = createLetterFrequencies();
+  //var arr = [];
   
-
+  var unroundedPercent;
   function numberToPercent(num) {
-    return Math.round(num / totalChars * 100);  
+    unroundedPercent =  (num / totalChars) * 100;
+    return Math.round(unroundedPercent * 10) / 10;   
   }  
+  
+  var letterArr = [];
 
-  function percentToBar(percent) {
-    bar = Array(percent).join("=");  
-    return bar;
+  for (val in letterNumberObj) {
+    percent = numberToPercent(letterNumberObj[val]);
+    
+    letterArr.push(
+      {
+        letter: val,
+        number: percent  
+      }
+    );
+    data.push(percent);
+    //arr.push("<br>" + val + ": " + barChart + " " + percent + "%");
   }
 
-  for (val in letterObj) {
-    percent = numberToPercent(letterObj[val]);
-    var barChart = percentToBar(percent);
-    arr.push("<br>" + val + ": " + barChart + " " + percent + "%");
+  //arr = arr.sort(); 
+
+  letterArr.sort(function(a, b) {
+    return (a.letter < b.letter) ? -1 : (a.letter > b.letter) ? 1 : 0;
+  });
+
+  var numArr = [];
+
+  for (val in letterArr) {
+    numArr.push(letterArr[val].number);
   }
 
-  arr = arr.sort(); 
+  var highestFreq = numArr.reduce(function(a, b) {
+    return Math.max(a, b);  
+  });
 
-  letters.innerHTML = arr.join("");
+  var maxWidth = 1070;
 
+  //letters.innerHTML = arr.join(""); 
+  text.innerHTML += letterArr.length;
+
+  //build chart
+
+  function drawChart() {
+    d3.select(".chart")
+    .html(null)
+    .selectAll("div")
+    .data(letterArr)
+      .enter()
+      .append("div")
+      .style("width", function(d) { return (d.number / highestFreq) * maxWidth + 70 + "px"; })
+      .text(function(d) { return d.letter + " " + d.number + "%"; })
+      
+  }
+
+  drawChart();
+  
 }
+
+
 
 
  

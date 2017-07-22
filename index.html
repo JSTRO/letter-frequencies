@@ -5,16 +5,23 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    
-    <h1>~Letter Freqs~</h1>
-
-    <div>
-      <textarea type="text" id="input" rows="10" onkeyup="displayLetterFrequencies()"></textarea>  
-    </div>
-    <div id="text">
+    <h1>~etaoin shrdlu~</h1>
+    <div class="container"><textarea type="text" id="input" rows="10" onkeyup="displayLetterFrequencies()"></textarea></div>
+    <div class="container" id="text">
     </div> 
-    <div id="letters">
+    <p></p>
+    <div class="container" id="letters">
+    </div>
+    <div class="container chart">   
     </div>
   </body>
+  <!-- d3 -->
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <!-- JQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <!-- Bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- custom JS -->
   <script type="text/javascript" src="./letter-proportions.js"></script>
 </html>
